@@ -5,6 +5,11 @@ import { TaskService } from "../../../../core/services/task/task.service";
 import { Task } from "../../../../core/models/task.model";
 import { CommonModule } from '@angular/common';
 
+/**
+ * TaskFormComponent is responsible for managing the form used to create or update tasks.
+ * It retrieves existing task data for editing and handles the form's submission
+ * to create or update tasks via the TaskService.
+ */
 @Component({
   selector: 'app-task-form',
   standalone: true,
@@ -26,6 +31,10 @@ export class TaskFormComponent implements OnInit {
   loading = false;
   taskId: string | null = null;
 
+  /**
+   * Initializes the component by checking for an existing `id` in the URL.
+   * If an `id` is present, it fetches the corresponding task data and populates the form.
+   */
   ngOnInit(): void {
     this.taskId = this.route.snapshot.paramMap.get('id');
     if (this.taskId) {
@@ -37,6 +46,11 @@ export class TaskFormComponent implements OnInit {
     }
   }
 
+  /**
+   * Handles the form submission process. Creates or updates a task based on
+   * whether an existing `id` is available. Prevents submission if the form is invalid.
+   * Navigates to the task list upon success or resets the loading state on error.
+   */
   onSubmit(): void {
     if (this.form.invalid) return;
     this.loading = true;
@@ -53,6 +67,13 @@ export class TaskFormComponent implements OnInit {
     });
   }
 
+  /**
+   * Converts the form's `formValue` into a `Task` object, ensuring all properties
+   * are properly formatted for the API or data storage layer.
+   *
+   * @param formValue - The form's current value as an object.
+   * @returns A `Task` object with `id`, `title`, and `description` fields.
+   */
   private toTaskModel(formValue: { [key: string]: any }): Task {
     return {
       id: this.taskId || '',
