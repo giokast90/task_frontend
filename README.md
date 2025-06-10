@@ -1,27 +1,52 @@
-# TaskFrontend
+# Task Management Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
+A feature-rich Angular application for managing tasks. This application allows users to create, update, delete, and view tasks, with authentication and routing functionalities for a seamless user experience.
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Clone the repository:
+   ```
+   git clone https://github.com/giokast90/task_frontend.git
+   ```
+2. Navigate to the project directory:
+   ```
+   cd task_frontend
+   ```
+3. Install the required dependencies:
+   ```
+   npm install
+   ```
 
-## Code scaffolding
+## Usage
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Start the development server:
+   ```
+   npm start
+   ```
+2. Open your browser and navigate to `http://localhost:4200`.
 
-## Build
+### Features:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Login functionality to ensure secure access.
+- Task management: Create, edit, view, delete, and toggle task states.
+- Routing integrated with guards for authenticated navigation.
+- Server-side rendering with hydration features.
 
-## Running unit tests
+### Routing Overview
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Default route (`/`): Redirects to `/tasks`.
+- `/login`: Loads the login page dynamically.
+- `/tasks`: Logged-in users can manage tasks here.
 
-## Running end-to-end tests
+## Technologies Used
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- **Framework:** Angular 17.3.0
+- **Backend Integration:** Express 4.18.2
+- **Styling Framework:** Bootstrap 5.3.6, Bootstrap Icons 1.13.1
+- **State Management:** RxJS 7.8.0
+- **Authentication:** Custom AuthService with Interceptors
+- **SSR:** Angular server-side rendering (hydration)
 
-## Further help
+## License
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This project is licensed under the MIT License.
