@@ -1,0 +1,57 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-secondary mb-3" (click)="goToLogin()">
+      <i class="bi bi-box-arrow-left"></i>
+    </button>
+  </div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">My tasks</h2>
+    <a class="btn btn-success" routerLink="/tasks/new">New task</a>
+  </div>
+
+  <div *ngIf="tasks.length; else noTasks">
+    <div *ngFor="let task of tasks; trackBy: trackById" class="card mb-3 shadow-sm">
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <div>
+          <h5 class="card-title mb-1">
+            {{ task.title }}
+            <span *ngIf="task.completed" class="badge bg-success ms-2">Completed</span>
+          </h5>
+          <p class="card-text text-muted small">
+            {{ task.description }}
+            <br/>
+            <small class="text-muted">Created at: {{ task.createdAt | date: 'short' }}</small>
+          </p>
+        </div>
+
+        <div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [checked]="task.completed"
+              (change)="toggleCompleted(task)"
+              [id]="'taskCheck' + task.id"
+            />
+            <label class="form-check-label" [for]="'taskCheck' + task.id">
+              {{ task.completed ? 'Completed' : 'Pending' }}
+            </label>
+          </div>
+
+          <div class="mt-2 d-flex gap-2 justify-content-end">
+            <button class="btn btn-outline-primary btn-sm" (click)="editTask(task.id)">
+              <i class="bi bi-pencil-fill"></i>
+            </button>
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteTask(task.id)">
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noTasks>
+    <div class="alert alert-info text-center">You don't have any registered tasks yet.</div>
+  </ng-template>
+</div>
